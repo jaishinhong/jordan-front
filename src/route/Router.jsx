@@ -3,6 +3,8 @@ import LoginPage from "../pages/LoginPage";
 import Header from "../layouts/Header";
 import HomePage from "../pages/HomePage";
 import Register from "../pages/Register";
+import RedirectIfLogin from "../features/auth/components/redirectIfLogin";
+import AdminPage from "../pages/AdminPage";
 
 const router = createBrowserRouter([
     {
@@ -20,7 +22,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/login",
-                element: <LoginPage />
+                element: (
+                    <RedirectIfLogin>
+                        <LoginPage />
+                    </RedirectIfLogin>
+                )
             },
             {
                 path: "Register",
@@ -35,8 +41,22 @@ const router = createBrowserRouter([
                 element: <h1>order</h1>
             },
             {
-                path: "admin",
-                element: <h1>Admin</h1>
+                path: "/admin",
+                element: (
+                    <AdminPage>
+                        <Outlet />
+                    </AdminPage>
+                ),
+                children: [
+                    {
+                        path: "/admin/summary",
+                        element: <h1>Summary</h1>
+                    },
+                    {
+                        path: "/admin/addProduct",
+                        element: <h1>AddProduct</h1>
+                    }
+                ]
             }
         ]
     }

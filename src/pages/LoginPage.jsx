@@ -3,12 +3,13 @@ import InputLogin from "../features/auth/components/InputLogin";
 import { useState } from "react";
 import validateLogin from "../features/auth/validator/validate-login";
 import useAuth from "../features/auth/hook/useAuth";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function loginPage() {
     const [input, setInput] = useState({ email: "", password: "" });
     const [error, setError] = useState({});
     const { login } = useAuth();
+    const navigate = useNavigate();
 
     const handleChangeInput = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
@@ -23,8 +24,7 @@ export default function loginPage() {
             }
             setError({});
             await login(input);
-            <Navigate to="/" />;
-            console.log("hello");
+            navigate("/");
         } catch (err) {
             console.log(err);
         }

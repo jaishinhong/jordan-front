@@ -12,7 +12,7 @@ export default function Header() {
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">
-                    <li>
+                    <li className="flex">
                         {authenticate.isAuthen ? (
                             <p
                                 onClick={() => {
@@ -24,6 +24,11 @@ export default function Header() {
                             </p>
                         ) : (
                             <Link to="/login">Sign In</Link>
+                        )}
+                    </li>
+                    <li>
+                        {authenticate.user?.role == "admin" && (
+                            <Link to="/admin">Admin</Link>
                         )}
                     </li>
                     <li>
