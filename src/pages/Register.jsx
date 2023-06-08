@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import InputRegister from "../components/InputRegister";
-import validateRegister from "../validator/validate-register";
+import InputRegister from "../features/auth/components/InputRegister";
+import validateRegister from "../features/auth/validator/validate-register";
+import useAuth from "../features/auth/hook/useAuth";
 
 const initialInput = {
     firstName: "",
@@ -13,18 +14,26 @@ const initialInput = {
 export default function Register() {
     const [input, setInput] = useState(initialInput);
     const [error, setError] = useState({});
+    const { register } = useAuth();
 
     const handleChangeInput = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const result = validateRegister(input);
-        if (result) {
-            setError(result);
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+            const result = validateRegister(input);
+            if (result) {
+                return setError(result);
+            }
+            setError({});
+            await register(input);
+        } catch (error) {
+            console.log(error);
         }
     };
+
     return (
         <>
             <form onSubmit={handleSubmit}>

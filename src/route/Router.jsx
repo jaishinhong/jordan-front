@@ -25,6 +25,18 @@ const router = createBrowserRouter([
             {
                 path: "Register",
                 element: <Register />
+            },
+            {
+                path: "/product/:id",
+                element: <h1>product</h1>
+            },
+            {
+                path: "/order",
+                element: <h1>order</h1>
+            },
+            {
+                path: "admin",
+                element: <h1>Admin</h1>
             }
         ]
     }

@@ -24,6 +24,7 @@ const registerSchema = Joi.object({
         }),
     confirmPassword: Joi.string()
         .valid(Joi.ref("password"))
+        .trim()
         .required()
         .messages({
             "any.only": "Password and Confirm password did not match",

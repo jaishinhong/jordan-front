@@ -1,15 +1,30 @@
 import { Link } from "react-router-dom";
+import useAuth from "../features/auth/hook/useAuth";
 
 export default function Header() {
+    const { authenticate, logout } = useAuth();
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
-                <a className="btn btn-ghost normal-case text-xl">JORDANSTORE</a>
+                <Link to="/" className="btn btn-ghost normal-case text-xl">
+                    JORDANSTORE
+                </Link>
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">
                     <li>
-                        <Link to="/login">Sign In</Link>
+                        {authenticate.isAuthen ? (
+                            <p
+                                onClick={() => {
+                                    logout();
+                                }}
+                                className="font-semibold"
+                            >
+                                Log out
+                            </p>
+                        ) : (
+                            <Link to="/login">Sign In</Link>
+                        )}
                     </li>
                     <li>
                         {/* <details>
