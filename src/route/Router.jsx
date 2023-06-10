@@ -5,6 +5,11 @@ import HomePage from "../pages/HomePage";
 import Register from "../pages/Register";
 import RedirectIfLogin from "../features/auth/components/redirectIfLogin";
 import AdminPage from "../pages/AdminPage";
+import AddProductPage from "../pages/AddProductPage";
+import AdminProductContextProver from "../features/admin/context/adminProductContextProvider";
+import AdminProtectedRoute from "../features/admin/components/AdminProtectedRoute";
+import { ProductContextProvider } from "../features/product/context/ProductContextProvider";
+import ProductPage from "../pages/ProductPage";
 
 const router = createBrowserRouter([
     {
@@ -18,14 +23,18 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <HomePage />
+                element: (
+                    <ProductContextProvider>
+                        <HomePage />
+                    </ProductContextProvider>
+                )
             },
             {
                 path: "/login",
                 element: (
-                    <RedirectIfLogin>
-                        <LoginPage />
-                    </RedirectIfLogin>
+                    // <RedirectIfLogin>
+                    <LoginPage />
+                    // </RedirectIfLogin>
                 )
             },
             {
@@ -34,7 +43,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/product/:id",
-                element: <h1>product</h1>
+                element: (
+                    <ProductContextProvider>
+                        <ProductPage />
+                    </ProductContextProvider>
+                )
             },
             {
                 path: "/order",
@@ -43,9 +56,11 @@ const router = createBrowserRouter([
             {
                 path: "/admin",
                 element: (
-                    <AdminPage>
-                        <Outlet />
-                    </AdminPage>
+                    <AdminProtectedRoute>
+                        <AdminPage>
+                            <Outlet />
+                        </AdminPage>
+                    </AdminProtectedRoute>
                 ),
                 children: [
                     {
@@ -54,7 +69,11 @@ const router = createBrowserRouter([
                     },
                     {
                         path: "/admin/addProduct",
-                        element: <h1>AddProduct</h1>
+                        element: (
+                            <AdminProductContextProver>
+                                <AddProductPage />
+                            </AdminProductContextProver>
+                        )
                     }
                 ]
             }

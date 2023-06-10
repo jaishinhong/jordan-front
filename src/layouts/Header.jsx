@@ -3,6 +3,7 @@ import useAuth from "../features/auth/hook/useAuth";
 
 export default function Header() {
     const { authenticate, logout } = useAuth();
+    // console.log(authenticate);
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -12,6 +13,11 @@ export default function Header() {
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">
+                    <li>
+                        {authenticate.user?.role == "admin" && (
+                            <Link to="/admin">Admin</Link>
+                        )}
+                    </li>
                     <li className="flex">
                         {authenticate.isAuthen ? (
                             <p
@@ -26,11 +32,7 @@ export default function Header() {
                             <Link to="/login">Sign In</Link>
                         )}
                     </li>
-                    <li>
-                        {authenticate.user?.role == "admin" && (
-                            <Link to="/admin">Admin</Link>
-                        )}
-                    </li>
+
                     <li>
                         {/* <details>
                             <summary>Parent</summary>

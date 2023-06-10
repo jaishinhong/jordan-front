@@ -1,6 +1,10 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import * as authService from "../../../api/auth-api";
-import { setAccessToken, removeAccessToken } from "../../../utils/localstorage";
+import {
+    setAccessToken,
+    removeAccessToken,
+    getAccessToken
+} from "../../../utils/localstorage";
 
 export const AuthContext = createContext();
 
@@ -12,6 +16,7 @@ export default function AuthContextProvider({ children }) {
     const register = async (input) => {
         const res = await authService.register(input);
         setAccessToken(res.data.accessToken);
+        const resultFetchMe = await authService.fetchMe();
         setAuthenticate({
             ...authenticate,
             isAuthen: true,
@@ -31,12 +36,16 @@ export default function AuthContextProvider({ children }) {
     };
 
     const fetchMe = async () => {
-        const resultFetchMe = await authService.fetchMe();
-        setAuthenticate({
-            ...authenticate,
-            isAuthen: true,
-            user: resultFetchMe.data.user
-        });
+        try {
+            const resultFetchMe = await authService.fetchMe();
+            setAuthenticate({
+                ...authenticate,
+                isAuthen: true,
+                user: resultFetchMe.data.user
+            });
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     const logout = () => {
@@ -44,6 +53,18 @@ export default function AuthContextProvider({ children }) {
         setAuthenticate({ ...authenticate, isAuthen: false, user: null });
     };
 
+    useEffect(() => {
+        const accessTokenFn = async () => {
+            if (getAccessToken()) {
+                await fetchMe();
+            }
+        };
+        accessTokenFn();
+        // console.log("hellooooooooooooooooooooooooooo");
+        // console.log(authenticate);
+    }, []);
+
+    // console.log(authenticate);
     return (
         <AuthContext.Provider
             value={{ register, login, authenticate, logout, fetchMe }}

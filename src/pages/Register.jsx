@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InputRegister from "../features/auth/components/InputRegister";
 import validateRegister from "../features/auth/validator/validate-register";
 import useAuth from "../features/auth/hook/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const initialInput = {
     firstName: "",
@@ -15,6 +16,7 @@ export default function Register() {
     const [input, setInput] = useState(initialInput);
     const [error, setError] = useState({});
     const { register } = useAuth();
+    const navigate = useNavigate();
 
     const handleChangeInput = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
@@ -29,6 +31,7 @@ export default function Register() {
             }
             setError({});
             await register(input);
+            navigate("/");
         } catch (error) {
             console.log(error);
         }

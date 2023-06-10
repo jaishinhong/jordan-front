@@ -1,18 +1,11 @@
 import useAuth from "./features/auth/hook/useAuth";
 import Router from "./route/Router";
-import { getAccessToken } from "./utils/localstorage";
 
 function App() {
-    const { fetchMe } = useAuth();
-
-    const accessTokenFn = async () => {
-        if (getAccessToken()) {
-            await fetchMe();
-        }
-    };
-    accessTokenFn();
+    // const { authenticate } = useAuth();
+    // console.log(authenticate);
     return (
-        <div>
+        <div className="min-w-[700px]">
             <Router />
         </div>
     );
