@@ -25,9 +25,12 @@ export default function AddProductPage() {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        addProductData(input, file);
+        await addProductData(input, file);
+        alert("add product successfully");
+        setInput(initialValue);
+        setFile(null);
     };
 
     return (
@@ -37,7 +40,7 @@ export default function AddProductPage() {
                 onClick={() => inputEl.current.click()}
                 role="button"
             >
-                <UploadIcon />
+                {!file && <UploadIcon />}
                 <input
                     type="file"
                     className="hidden"

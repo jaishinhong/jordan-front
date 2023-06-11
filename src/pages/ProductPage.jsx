@@ -3,15 +3,20 @@ import { useParams } from "react-router-dom";
 import { useProduct } from "../features/product/hook/useProduct";
 import SizeInput from "../features/product/components/SizeInput";
 import useAuth from "../features/auth/hook/useAuth";
+import { useNavigate } from "react-router-dom";
+import useCart from "../features/cart/hook/useCart";
 
 export default function ProductPage() {
     const { product, getProductById } = useProduct();
     const { authenticate } = useAuth();
-    console.log(authenticate.user?.id);
+    const { addCart } = useCart();
+    const navigate = useNavigate();
+
     const param = useParams();
     const [input, setInput] = useState({
-        productId: param,
-        size: ""
+        productId: param.id,
+        size: "",
+        amount: 1
     });
     const [check, setCheck] = useState({});
 
@@ -33,13 +38,18 @@ export default function ProductPage() {
         type = "kids";
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!authenticate.isAuthen) {
+            return navigate("/login");
+        }
         if (!input.size) {
             return alert("Please select your size");
         }
-        setInput({ ...input, userId: authenticate.user?.id });
         console.log(input);
+        await addCart(input);
+        alert("add to cart successfully");
     };
 
     return (

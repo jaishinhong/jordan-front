@@ -21,6 +21,7 @@ export const ProductContextProvider = function ({ children }) {
         const res = await productService.getProductById(id.id);
         setProduct(res.data.product);
     };
+
     return (
         <ProductContext.Provider
             value={{

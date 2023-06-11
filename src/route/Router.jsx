@@ -10,7 +10,11 @@ import AdminProductContextProver from "../features/admin/context/adminProductCon
 import AdminProtectedRoute from "../features/admin/components/AdminProtectedRoute";
 import { ProductContextProvider } from "../features/product/context/ProductContextProvider";
 import ProductPage from "../pages/ProductPage";
-
+import CartPage from "../pages/CartPage";
+import CartContextProvider from "../features/cart/context/cartContextProvider";
+import ProtectedRoute from "../features/auth/components/ProtectedRoute";
+import MyOrderPage from "../pages/MyOrderPage";
+import OrderContextProvider from "../features/order/context/OrderContextProvider";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -44,14 +48,30 @@ const router = createBrowserRouter([
             {
                 path: "/product/:id",
                 element: (
-                    <ProductContextProvider>
-                        <ProductPage />
-                    </ProductContextProvider>
+                    <CartContextProvider>
+                        <ProductContextProvider>
+                            <ProductPage />
+                        </ProductContextProvider>
+                    </CartContextProvider>
+                )
+            },
+            {
+                path: "/cart",
+                element: (
+                    <ProtectedRoute>
+                        <CartContextProvider>
+                            <CartPage />
+                        </CartContextProvider>
+                    </ProtectedRoute>
                 )
             },
             {
                 path: "/order",
-                element: <h1>order</h1>
+                element: (
+                    <OrderContextProvider>
+                        <MyOrderPage />
+                    </OrderContextProvider>
+                )
             },
             {
                 path: "/admin",

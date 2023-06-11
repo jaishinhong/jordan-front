@@ -64,7 +64,7 @@ export default function AuthContextProvider({ children }) {
         // console.log(authenticate);
     }, []);
 
-    // console.log(authenticate);
+    console.log(authenticate);
     return (
         <AuthContext.Provider
             value={{ register, login, authenticate, logout, fetchMe }}

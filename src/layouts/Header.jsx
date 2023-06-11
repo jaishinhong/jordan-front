@@ -34,17 +34,31 @@ export default function Header() {
                     </li>
 
                     <li>
-                        {/* <details>
-                            <summary>Parent</summary>
-                            <ul className="p-2 bg-base-100">
-                                <li>
-                                    <a>Link 1</a>
-                                </li>
-                                <li>
-                                    <a>Link 2</a>
-                                </li>
-                            </ul>
-                        </details> */}
+                        {authenticate.isAuthen && (
+                            <details>
+                                <summary className="font-semibold">
+                                    My Profile
+                                </summary>
+                                <ul className="p-2 bg-base-100">
+                                    <li>
+                                        <Link
+                                            to="/cart"
+                                            className="font-semibold"
+                                        >
+                                            My cart
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/order"
+                                            className="font-semibold"
+                                        >
+                                            My order
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </details>
+                        )}
                     </li>
                 </ul>
             </div>

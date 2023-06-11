@@ -19,6 +19,7 @@ export default function loginPage() {
         try {
             e.preventDefault();
             const result = validateLogin(input);
+            console.log(result);
             if (result) {
                 return setError(result);
             }
@@ -26,7 +27,7 @@ export default function loginPage() {
             await login(input);
             navigate("/");
         } catch (err) {
-            console.log(err);
+            alert("incorrect email or password");
         }
     };
     return (
