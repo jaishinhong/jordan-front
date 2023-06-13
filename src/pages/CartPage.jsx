@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import CartItem from "../features/cart/component.jsx/CartItem";
 import useCart from "../features/cart/hook/useCart";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../features/auth/hook/useAuth";
 export default function CartPage() {
     const { cart, deleteCart, addOrder } = useCart();
     const navigate = useNavigate();
-
+    // const { authenticate } = useAuth();
+    // console.log(authenticate);
     const [price, setPrice] = useState({ price: "", totalPrice: "" });
 
     useEffect(() => {

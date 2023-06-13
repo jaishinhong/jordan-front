@@ -15,6 +15,9 @@ import CartContextProvider from "../features/cart/context/cartContextProvider";
 import ProtectedRoute from "../features/auth/components/ProtectedRoute";
 import MyOrderPage from "../pages/MyOrderPage";
 import OrderContextProvider from "../features/order/context/OrderContextProvider";
+import PaymentPage from "../pages/PaymentPage";
+import SummaryPage from "../pages/SummaryPage";
+import UpdateProductPage from "../pages/UpdateProductPage";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -74,6 +77,14 @@ const router = createBrowserRouter([
                 )
             },
             {
+                path: "/payment/:id",
+                element: (
+                    <OrderContextProvider>
+                        <PaymentPage />
+                    </OrderContextProvider>
+                )
+            },
+            {
                 path: "/admin",
                 element: (
                     <AdminProtectedRoute>
@@ -85,13 +96,25 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: "/admin/summary",
-                        element: <h1>Summary</h1>
+                        element: (
+                            <OrderContextProvider>
+                                <SummaryPage />
+                            </OrderContextProvider>
+                        )
                     },
                     {
                         path: "/admin/addProduct",
                         element: (
                             <AdminProductContextProver>
                                 <AddProductPage />
+                            </AdminProductContextProver>
+                        )
+                    },
+                    {
+                        path: "/admin/updateProduct",
+                        element: (
+                            <AdminProductContextProver>
+                                <UpdateProductPage />
                             </AdminProductContextProver>
                         )
                     }

@@ -34,7 +34,7 @@ export default function AddProductPage() {
     };
 
     return (
-        <div className="flex h-[100%] w-[100%] gap-10 justify-center">
+        <div className="flex h-[100%] w-[80%] gap-10 justify-center">
             <div
                 className="w-[30%] h-[50%] flex justify-center items-center border border-black rounded"
                 onClick={() => inputEl.current.click()}

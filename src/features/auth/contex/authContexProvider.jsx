@@ -12,6 +12,7 @@ const initialValue = { isAuthen: false, user: null };
 
 export default function AuthContextProvider({ children }) {
     const [authenticate, setAuthenticate] = useState(initialValue);
+    const [initialLoading, setInitialLoading] = useState(true);
 
     const register = async (input) => {
         const res = await authService.register(input);
@@ -43,6 +44,7 @@ export default function AuthContextProvider({ children }) {
                 isAuthen: true,
                 user: resultFetchMe.data.user
             });
+            setInitialLoading(false);
         } catch (err) {
             console.log(err);
         }
@@ -60,14 +62,18 @@ export default function AuthContextProvider({ children }) {
             }
         };
         accessTokenFn();
-        // console.log("hellooooooooooooooooooooooooooo");
-        // console.log(authenticate);
     }, []);
-
-    console.log(authenticate);
+    // console.log(authenticate);
     return (
         <AuthContext.Provider
-            value={{ register, login, authenticate, logout, fetchMe }}
+            value={{
+                register,
+                login,
+                authenticate,
+                logout,
+                fetchMe,
+                initialLoading
+            }}
         >
             {children}
         </AuthContext.Provider>

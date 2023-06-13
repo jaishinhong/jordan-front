@@ -10,14 +10,17 @@ export default function ProductPage() {
     const { product, getProductById } = useProduct();
     const { authenticate } = useAuth();
     const { addCart } = useCart();
+
     const navigate = useNavigate();
 
     const param = useParams();
+
     const [input, setInput] = useState({
         productId: param.id,
         size: "",
         amount: 1
     });
+
     const [check, setCheck] = useState({});
 
     const handleChange = (e) => {
@@ -55,7 +58,7 @@ export default function ProductPage() {
     return (
         <div className="flex min-w-screen h-[calc(100vh-168px)] justify-center mt-[100px] gap-20">
             <img
-                src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/7683c588-e0f5-46b9-9382-ef6ec80db821/%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%97%E0%B9%89%E0%B8%B2%E0%B8%9C%E0%B8%B9%E0%B9%89-jordan-stadium-90-Jn6ZH4.png"
+                src={product.image}
                 alt="jordan"
                 className="w-[500px] h-[500px]"
             />
