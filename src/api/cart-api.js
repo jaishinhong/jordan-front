@@ -11,3 +11,5 @@ export const getCartsByUser = () => {
 export const deleteCart = (id) => {
     return axios.delete(`cart/deleteCart/${id}`);
 };
+
+export const deleteCartByUser = () => axios.delete("cart/deleteCartByUser");

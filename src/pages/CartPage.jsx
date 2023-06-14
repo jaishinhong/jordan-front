@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function CartPage() {
-    const { cart, deleteCart, addOrder } = useCart();
+    const { cart, deleteCart, addOrder, deleteCartByUserId } = useCart();
     const navigate = useNavigate();
 
     const [price, setPrice] = useState({ price: "", totalPrice: "" });
@@ -25,6 +25,7 @@ export default function CartPage() {
                 return toast.error("you don't have any item in your cart yet");
             }
             await addOrder();
+            await deleteCartByUserId();
             toast.success("your order has been added");
             navigate("/order");
         } catch (err) {

@@ -27,6 +27,14 @@ export default function CartContextProvider({ children }) {
         }
     };
 
+    const deleteCartByUserId = async () => {
+        try {
+            await cartService.deleteCartByUser();
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     useEffect(() => {
         getCartsByUser();
     }, []);
@@ -39,7 +47,9 @@ export default function CartContextProvider({ children }) {
     };
 
     return (
-        <CartContext.Provider value={{ addCart, cart, deleteCart, addOrder }}>
+        <CartContext.Provider
+            value={{ addCart, cart, deleteCart, addOrder, deleteCartByUserId }}
+        >
             {children}
         </CartContext.Provider>
     );
