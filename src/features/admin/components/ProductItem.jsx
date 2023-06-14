@@ -1,8 +1,10 @@
+import { useRef } from "react";
 import useAdminProduct from "../hook/useAdminProduct";
 import EditForm from "./EditForm";
 
 export default function ProductItem({ image, name, price, id }) {
     const { removeProduct } = useAdminProduct();
+    const inputEl = useRef();
 
     return (
         <div className="flex justify-between mx-10 border-b-2 p-3">
@@ -10,7 +12,7 @@ export default function ProductItem({ image, name, price, id }) {
             <h1 className="self-center">{name}</h1>
             <h1 className="self-center">{price}</h1>
             <div className="self-center">
-                <label htmlFor={`my_modal_${id}`} className="btn">
+                <label htmlFor={`my_modal_${id}`} className="btn" ref={inputEl}>
                     Edit
                 </label>
                 <input
@@ -20,7 +22,12 @@ export default function ProductItem({ image, name, price, id }) {
                 />
                 <div className="modal">
                     <div className="modal-box">
-                        <EditForm id={id} name={name} price={price} />
+                        <EditForm
+                            id={id}
+                            name={name}
+                            price={price}
+                            inputEl={inputEl}
+                        />
                     </div>
                     <label
                         className="modal-backdrop"

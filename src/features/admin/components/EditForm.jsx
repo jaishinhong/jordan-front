@@ -4,7 +4,7 @@ import SelectInput from "./SelectInput";
 import useAdminProduct from "../hook/useAdminProduct";
 import { toast } from "react-toastify";
 
-export default function EditForm({ id, name, price }) {
+export default function EditForm({ id, name, price, inputEl }) {
     const { updateProduct, getAllProducts } = useAdminProduct();
 
     const [input, setInput] = useState({
@@ -27,6 +27,7 @@ export default function EditForm({ id, name, price }) {
             await updateProduct(id, input, file);
             await getAllProducts();
             toast.success("update successfully");
+            inputEl.current.click();
         } catch (err) {
             toast.error("update error");
         }
