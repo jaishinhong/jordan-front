@@ -30,19 +30,22 @@ export default function SummaryPage() {
                 <div className="flex justify-between mx-40" key={el.id}>
                     <h1 className="text-lg font-normal">{el.id}</h1>
 
-                    <label htmlFor="my_modal_7" className="btn w-32">
+                    <label htmlFor={`my_modal_7${el.id}`} className="btn w-32">
                         view receipt
                     </label>
                     <input
                         type="checkbox"
-                        id="my_modal_7"
+                        id={`my_modal_7${el.id}`}
                         className="modal-toggle"
                     />
                     <div className="modal">
                         <div className="modal-box p-0">
                             <img src={el.receipt} alt="receipt" />
                         </div>
-                        <label className="modal-backdrop" htmlFor="my_modal_7">
+                        <label
+                            className="modal-backdrop"
+                            htmlFor={`my_modal_7${el.id}`}
+                        >
                             Close
                         </label>
                     </div>

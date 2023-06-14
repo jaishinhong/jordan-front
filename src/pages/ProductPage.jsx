@@ -5,7 +5,7 @@ import SizeInput from "../features/product/components/SizeInput";
 import useAuth from "../features/auth/hook/useAuth";
 import { useNavigate } from "react-router-dom";
 import useCart from "../features/cart/hook/useCart";
-
+import { toast } from "react-toastify";
 export default function ProductPage() {
     const { product, getProductById } = useProduct();
     const { authenticate } = useAuth();
@@ -52,7 +52,8 @@ export default function ProductPage() {
         }
         console.log(input);
         await addCart(input);
-        alert("add to cart successfully");
+
+        toast.success("add to cart successfully");
     };
 
     return (

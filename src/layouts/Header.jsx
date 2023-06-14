@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import useAuth from "../features/auth/hook/useAuth";
-
+import { useNavigate } from "react-router-dom";
 export default function Header() {
     const { authenticate, logout } = useAuth();
-    // console.log(authenticate, "headerrrrr");
+    const navigate = useNavigate();
 
     return (
         <div className="navbar bg-base-100">
@@ -24,6 +24,7 @@ export default function Header() {
                             <p
                                 onClick={() => {
                                     logout();
+                                    navigate("/");
                                 }}
                                 className="font-semibold"
                             >
@@ -38,7 +39,7 @@ export default function Header() {
                         {authenticate.isAuthen && (
                             <details>
                                 <summary className="font-semibold">
-                                    My Profile
+                                    {authenticate.user.firstName}
                                 </summary>
                                 <ul className="p-2 bg-base-100">
                                     <li>

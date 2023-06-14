@@ -1,6 +1,6 @@
+import { ToastContainer } from "react-toastify";
 import Loading from "./component/Loading";
 import useAuth from "./features/auth/hook/useAuth";
-
 import Router from "./route/Router";
 
 function App() {
@@ -9,9 +9,15 @@ function App() {
     if (initialLoading) {
         return <Loading />;
     }
+
     return (
         <div className="min-w-[700px]">
             <Router />
+            <ToastContainer
+                position="bottom-center"
+                theme="dark"
+                autoClose={3000}
+            />
         </div>
     );
 }

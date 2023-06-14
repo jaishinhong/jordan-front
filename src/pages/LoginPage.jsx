@@ -4,6 +4,7 @@ import { useState } from "react";
 import validateLogin from "../features/auth/validator/validate-login";
 import useAuth from "../features/auth/hook/useAuth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function loginPage() {
     const [input, setInput] = useState({ email: "", password: "" });
@@ -26,8 +27,9 @@ export default function loginPage() {
             setError({});
             await login(input);
             navigate("/");
+            toast.success("login success");
         } catch (err) {
-            alert("something went wrong");
+            toast.error("login fail");
         }
     };
     return (

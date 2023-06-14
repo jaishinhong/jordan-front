@@ -3,6 +3,7 @@ import { UploadIcon } from "../icons";
 import InputProduct from "../features/admin/components/InputProduct";
 import SelectInput from "../features/admin/components/SelectInput";
 import useAdminProduct from "../features/admin/hook/useAdminProduct";
+import { toast } from "react-toastify";
 
 const initialValue = {
     name: "",
@@ -26,11 +27,15 @@ export default function AddProductPage() {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        await addProductData(input, file);
-        alert("add product successfully");
-        setInput(initialValue);
-        setFile(null);
+        try {
+            e.preventDefault();
+            await addProductData(input, file);
+            toast.success("add product successfully");
+            setInput(initialValue);
+            setFile(null);
+        } catch (err) {
+            toast.error("add product fail");
+        }
     };
 
     return (

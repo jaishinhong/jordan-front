@@ -59,6 +59,8 @@ export default function AuthContextProvider({ children }) {
         const accessTokenFn = async () => {
             if (getAccessToken()) {
                 await fetchMe();
+            } else {
+                setInitialLoading(false);
             }
         };
         accessTokenFn();

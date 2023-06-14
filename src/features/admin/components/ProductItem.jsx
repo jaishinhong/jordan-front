@@ -3,6 +3,7 @@ import EditForm from "./EditForm";
 
 export default function ProductItem({ image, name, price, id }) {
     const { removeProduct } = useAdminProduct();
+
     return (
         <div className="flex justify-between mx-10 border-b-2 p-3">
             <img src={image} alt="" className="w-[150px] h-[150px]" />
@@ -19,7 +20,7 @@ export default function ProductItem({ image, name, price, id }) {
                 />
                 <div className="modal">
                     <div className="modal-box">
-                        <EditForm id={id} />
+                        <EditForm id={id} name={name} price={price} />
                     </div>
                     <label
                         className="modal-backdrop"

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import CartItem from "../features/cart/component.jsx/CartItem";
 import useCart from "../features/cart/hook/useCart";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../features/auth/hook/useAuth";
+import { toast } from "react-toastify";
+
 export default function CartPage() {
     const { cart, deleteCart, addOrder } = useCart();
     const navigate = useNavigate();
-    // const { authenticate } = useAuth();
-    // console.log(authenticate);
+
     const [price, setPrice] = useState({ price: "", totalPrice: "" });
 
     useEffect(() => {
@@ -19,15 +19,18 @@ export default function CartPage() {
     }, [cart]);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!cart) {
-            return alert("you don't have any item in your cart yet");
+        try {
+            e.preventDefault();
+            if (!cart) {
+                return toast.error("you don't have any item in your cart yet");
+            }
+            await addOrder();
+            toast.success("your order has been added");
+            navigate("/order");
+        } catch (err) {
+            toast.success("fail to confrim order");
         }
-        await addOrder();
-        alert("your order has been added");
-        navigate("/");
     };
-
     return (
         <div className="flex justify-center h-[calc(100vh-168px)] mt-[100px] gap-8">
             <div className=" min-w-[600px]">

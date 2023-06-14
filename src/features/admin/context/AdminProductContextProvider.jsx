@@ -12,7 +12,7 @@ export default function AdminProductContextProvder({ children }) {
     const [products, setProducts] = useState([]);
 
     const addProductData = async (input, file) => {
-        console.log(input);
+        // console.log(input);
         const formData = new FormData();
         let stock = [];
         if (input.quantity && input.size) {

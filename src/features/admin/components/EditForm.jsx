@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import InputProduct from "./InputProduct";
 import SelectInput from "./SelectInput";
 import useAdminProduct from "../hook/useAdminProduct";
+import { toast } from "react-toastify";
 
-export default function EditForm({ id }) {
+export default function EditForm({ id, name, price }) {
     const { updateProduct, getAllProducts } = useAdminProduct();
 
     const [input, setInput] = useState({
-        name: "",
-        price: "",
+        name: name,
+        price: price,
         categoryId: "1"
     });
     const [file, setFile] = useState(null);
@@ -25,9 +26,9 @@ export default function EditForm({ id }) {
             e.preventDefault();
             await updateProduct(id, input, file);
             await getAllProducts();
-            document.body.click();
+            toast.success("update successfully");
         } catch (err) {
-            console.log(err);
+            toast.error("update error");
         }
     };
 

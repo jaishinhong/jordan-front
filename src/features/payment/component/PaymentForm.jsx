@@ -1,26 +1,33 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import useOrder from "../../order/hook/useOrder";
+import { useNavigate } from "react-router-dom";
 
 export default function PaymentForm({ id }) {
     const [input, setInput] = useState({ address: "" });
     const [file, setFile] = useState(null);
     const { updatePayment } = useOrder();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setInput({ address: e.target.value });
     };
+
     const handleChangeFile = (e) => {
         setFile(e.target.files[0]);
     };
+
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
             await updatePayment(id, input, file);
-            alert("update successfully");
+            toast.success("update payment successfully");
+            navigate("/order");
         } catch (err) {
-            console.log(err);
+            toast.error("fail to update payment");
         }
     };
+
     return (
         <form className="flex flex-col gap-10" onSubmit={handleSubmit}>
             <div className="flex flex-col">
