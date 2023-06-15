@@ -11,14 +11,14 @@ export const adminProductContext = createContext();
 export default function AdminProductContextProvder({ children }) {
     const [products, setProducts] = useState([]);
 
-    const addProductData = async (input, file) => {
+    const addProductData = async (input, file, stock) => {
         // console.log(input);
         const formData = new FormData();
-        let stock = [];
-        if (input.quantity && input.size) {
-            const obj = { name: input.size, quantity: input.quantity };
-            stock.push(obj);
-        }
+        // let stock = [];
+        // if (input.quantity && input.size) {
+        //     const obj = { name: input.size, quantity: input.quantity };
+        //     stock.push(obj);
+        // }
         if (input) {
             formData.append("name", input.name);
             formData.append("price", input.price);
