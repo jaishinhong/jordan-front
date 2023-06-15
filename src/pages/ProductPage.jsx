@@ -22,6 +22,7 @@ export default function ProductPage() {
     });
 
     const [check, setCheck] = useState({});
+    const [amount, setAmount] = useState(1);
 
     const handleChange = (e) => {
         setInput({ ...input, size: e.target.value });
@@ -40,6 +41,17 @@ export default function ProductPage() {
     } else {
         type = "kids";
     }
+
+    const handleIncrease = () => {
+        setAmount((c) => c + 1);
+        setInput({ ...input, amount });
+    };
+    const handleDecrease = () => {
+        if (amount !== 1) {
+            setAmount((c) => c - 1);
+            setInput({ ...input, amount });
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -78,7 +90,27 @@ export default function ProductPage() {
                         product={product}
                     />
                 </div>
-                <button className="w-[376px] h-[65px] bg-black text-white rounded-3xl text-xl">
+                <div>
+                    <div className="font-semibold text-xl">amount</div>
+                    {amount}
+                </div>
+                <div className="gap-5 flex">
+                    <div
+                        className="font-semibold text-2xl border border-black w-8 flex justify-center rounded"
+                        onClick={handleIncrease}
+                        role="button"
+                    >
+                        +
+                    </div>
+                    <div
+                        className="font-semibold text-2xl border border-black w-8 flex justify-center rounded"
+                        onClick={handleDecrease}
+                        role="button"
+                    >
+                        -
+                    </div>
+                </div>
+                <button className="w-[376px] h-[65px] bg-black text-white rounded-3xl text-xl ">
                     Add to cart
                 </button>
             </form>
