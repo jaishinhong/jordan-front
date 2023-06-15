@@ -96,14 +96,14 @@ export default function ProductPage() {
                 </div>
                 <div className="gap-5 flex">
                     <div
-                        className="font-semibold text-2xl border border-black w-8 flex justify-center rounded"
+                        className="font-semibold text-2xl border border-black h-5 w-5 flex rounded items-center pb-1 hover:bg-black hover:text-white"
                         onClick={handleIncrease}
                         role="button"
                     >
                         +
                     </div>
                     <div
-                        className="font-semibold text-2xl border border-black w-8 flex justify-center rounded"
+                        className="font-semibold text-2xl border border-black h-5 w-5 flex rounded items-center pb-1 pl-1 hover:bg-black hover:text-white"
                         onClick={handleDecrease}
                         role="button"
                     >

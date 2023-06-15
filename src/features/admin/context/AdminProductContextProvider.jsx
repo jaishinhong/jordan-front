@@ -47,7 +47,7 @@ export default function AdminProductContextProvder({ children }) {
     const updateProduct = async (id, input, file) => {
         try {
             const formData = new FormData();
-            if (input && file) {
+            if (input || file) {
                 formData.append("name", input.name);
                 formData.append("price", input.price);
                 formData.append("categoryId", input.categoryId);
