@@ -12,7 +12,7 @@ export default function EditForm({ id, name, price, inputEl }) {
         price: price,
         categoryId: "1"
     });
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState();
 
     const handleChangeInput = (e) => {
         if (e.target.name) {
