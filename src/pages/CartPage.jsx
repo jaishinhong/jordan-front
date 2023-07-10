@@ -5,7 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function CartPage() {
-    const { cart, deleteCart, addOrder, deleteCartByUserId } = useCart();
+    const {
+        cart,
+        deleteCart,
+        addOrder,
+        deleteCartByUserId,
+        increaseQuantity,
+        decreaseQuantity
+    } = useCart();
     const navigate = useNavigate();
 
     const [price, setPrice] = useState({ price: "", totalPrice: "" });
@@ -47,6 +54,12 @@ export default function CartPage() {
                             category={el.Product.categoryId}
                             size={el.size}
                             onDelete={() => deleteCart(el.id)}
+                            increaseQuantity={() => increaseQuantity(el.id)}
+                            decreaseQuantity={() => {
+                                if (el.amount > 1) {
+                                    decreaseQuantity(el.id);
+                                }
+                            }}
                         />
                     ))}
                 </div>

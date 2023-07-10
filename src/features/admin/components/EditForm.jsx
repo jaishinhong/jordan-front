@@ -18,7 +18,6 @@ export default function EditForm({ id, name, price, inputEl }) {
         if (e.target.name) {
             setInput({ ...input, [e.target.name]: e.target.value });
         }
-        // console.log(input);
     };
 
     const handleSubmit = async (e) => {
@@ -28,6 +27,7 @@ export default function EditForm({ id, name, price, inputEl }) {
             await getAllProducts();
             toast.success("update successfully");
             inputEl.current.click();
+            console.log(input);
         } catch (err) {
             toast.error("update error");
         }
@@ -59,6 +59,7 @@ export default function EditForm({ id, name, price, inputEl }) {
                 <SelectInput
                     value={input.categoryId}
                     onChange={handleChangeInput}
+                    name="categoryId"
                 />
                 <button className="text-white bg-black rounded mt-2 h-7">
                     Update Product

@@ -46,9 +46,30 @@ export default function CartContextProvider({ children }) {
         setCart(result.data.result);
     };
 
+    const increaseQuantity = async (id) => {
+        await cartService.increaseQuantity(id);
+        const result = await cartService.getCartsByUser();
+        setCart(result.data.result);
+    };
+
+    const decreaseQuantity = async (id) => {
+        console.log("hellooooooooooooooooooo");
+        await cartService.decreaseQuantity(id);
+        const result = await cartService.getCartsByUser();
+        setCart(result.data.result);
+    };
+
     return (
         <CartContext.Provider
-            value={{ addCart, cart, deleteCart, addOrder, deleteCartByUserId }}
+            value={{
+                addCart,
+                cart,
+                deleteCart,
+                addOrder,
+                deleteCartByUserId,
+                increaseQuantity,
+                decreaseQuantity
+            }}
         >
             {children}
         </CartContext.Provider>

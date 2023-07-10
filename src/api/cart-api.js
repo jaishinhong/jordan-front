@@ -13,3 +13,8 @@ export const deleteCart = (id) => {
 };
 
 export const deleteCartByUser = () => axios.delete("cart/deleteCartByUser");
+
+export const increaseQuantity = (id) =>
+    axios.patch(`cart/increaseQuantity/${id}`);
+export const decreaseQuantity = (id) =>
+    axios.patch(`cart/decreaseQuantity/${id}`);

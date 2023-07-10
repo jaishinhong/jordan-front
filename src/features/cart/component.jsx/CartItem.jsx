@@ -6,7 +6,9 @@ export default function CartItem({
     amount,
     category,
     size,
-    onDelete
+    onDelete,
+    increaseQuantity,
+    decreaseQuantity
 }) {
     let type;
     if (category === 1) {
@@ -24,7 +26,21 @@ export default function CartItem({
                 <p>{type} shoes</p>
                 <div>
                     <p>size {size}</p>
-                    <p>{amount}</p>
+                    <div className="flex text-xl gap-2">
+                        <button
+                            className="border border-black w-5 rounded"
+                            onClick={increaseQuantity}
+                        >
+                            +
+                        </button>
+                        <p>{amount}</p>
+                        <button
+                            className="border border-black w-5 rounded "
+                            onClick={decreaseQuantity}
+                        >
+                            -
+                        </button>
+                    </div>
                     <div className="mt-5" onClick={onDelete} role="button">
                         <BinIcon />
                     </div>

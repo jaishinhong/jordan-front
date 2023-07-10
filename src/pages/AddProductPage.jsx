@@ -10,6 +10,7 @@ const initialValue = {
     price: "",
     categoryId: "1"
 };
+// ddddddddddddd
 export default function AddProductPage() {
     const [input, setInput] = useState(initialValue);
 
