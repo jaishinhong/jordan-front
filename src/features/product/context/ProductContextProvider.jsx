@@ -22,6 +22,13 @@ export const ProductContextProvider = function ({ children }) {
         setProduct(res.data.product);
     };
 
+    const getSearchedProducts = async (name, id) => {
+        // console.log(name);
+        const res = await productService.getSearchedProducts(name, id);
+        console.log(res.data.searchedProducts);
+        setProducts(res.data.searchedProducts);
+    };
+
     return (
         <ProductContext.Provider
             value={{
@@ -30,7 +37,8 @@ export const ProductContextProvider = function ({ children }) {
                 setProducts,
                 getProductByCategoryId,
                 product,
-                getProductById
+                getProductById,
+                getSearchedProducts
             }}
         >
             {children}
