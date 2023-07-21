@@ -19,6 +19,7 @@ import PaymentPage from "../pages/PaymentPage";
 import SummaryPage from "../pages/SummaryPage";
 import UpdateProductPage from "../pages/UpdateProductPage";
 import LandingPage from "../pages/LandingPage";
+import Footer from "../layouts/Footer";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
                 element: (
                     <ProductContextProvider>
                         <LandingPage />
+                        <Footer />
                     </ProductContextProvider>
                 )
             },

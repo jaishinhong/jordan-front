@@ -44,7 +44,7 @@ export default function LandingPage() {
                             alt=""
                         />
                         <Link to="/home" state={{ type: "Men" }}>
-                            <button className="text-white bg-black rounded-xl px-5 py-2 text-xl absolute bottom-3 left-5">
+                            <button className="text-black border border-black rounded-xl px-5 py-2 text-2xl absolute bottom-3 left-5 hover:bg-black hover:text-white hover:scale-110">
                                 Men
                             </button>
                         </Link>
@@ -55,7 +55,7 @@ export default function LandingPage() {
                             alt=""
                         />
                         <Link to="/home" state={{ type: "Women" }}>
-                            <button className="text-white bg-black rounded-xl px-5 py-2 text-xl absolute bottom-3 left-5">
+                            <button className="text-black border border-black rounded-xl px-5 py-2 text-2xl absolute bottom-3 left-5 hover:bg-black hover:text-white hover:scale-110">
                                 Women
                             </button>
                         </Link>
