@@ -3,33 +3,27 @@ import ProductCard from "../features/product/components/ProductCard";
 import SideBarButton from "../features/product/components/SideBarButton";
 import { useProduct } from "../features/product/hook/useProduct";
 import { SearchIcon } from "../icons";
+import { useLocation } from "react-router-dom";
 const title = ["All", "Men", "Women", "Kids"];
 
 export default function HomePage() {
-    const [active, setActive] = useState({ All: true });
+    const { state } = useLocation();
+
+    const [active, setActive] = useState(
+        state ? { [state.type]: true } : { All: true }
+    );
     const {
         getAllProduct,
         products,
         getProductByCategoryId,
         getSearchedProducts
     } = useProduct();
+
     const [searchInput, setSearchInput] = useState("");
 
     const handleActiveButton = (title) => {
         setActive({ [title]: true });
     };
-
-    // useEffect(() => {
-    //     if (active.All) {
-    //         getAllProduct();
-    //     } else if (active.Men) {
-    //         getProductByCategoryId(1);
-    //     } else if (active.Women) {
-    //         getProductByCategoryId(2);
-    //     } else if (active.Kids) {
-    //         getProductByCategoryId(3);
-    //     }
-    // }, [active]);
 
     useEffect(() => {
         if (searchInput) {

@@ -35,13 +35,13 @@ export default function Header() {
                         )}
                     </li>
 
-                    <li>
+                    <li className="mr-4">
                         {authenticate.isAuthen && (
                             <details>
                                 <summary className="font-semibold">
                                     {authenticate.user.firstName}
                                 </summary>
-                                <ul className="p-2 bg-base-100">
+                                <ul className="p-2 bg-base-100 absolute">
                                     <li>
                                         <Link
                                             to="/cart"

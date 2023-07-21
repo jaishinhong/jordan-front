@@ -18,6 +18,7 @@ import OrderContextProvider from "../features/order/context/OrderContextProvider
 import PaymentPage from "../pages/PaymentPage";
 import SummaryPage from "../pages/SummaryPage";
 import UpdateProductPage from "../pages/UpdateProductPage";
+import LandingPage from "../pages/LandingPage";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -32,10 +33,19 @@ const router = createBrowserRouter([
                 path: "/",
                 element: (
                     <ProductContextProvider>
+                        <LandingPage />
+                    </ProductContextProvider>
+                )
+            },
+            {
+                path: "/home",
+                element: (
+                    <ProductContextProvider>
                         <HomePage />
                     </ProductContextProvider>
                 )
             },
+
             {
                 path: "/login",
                 element: (
