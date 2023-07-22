@@ -14,10 +14,10 @@ export default function ProductCard({ name, price, src, category, id }) {
             <div>
                 <img src={src} alt="jordan shoes" />
                 <div>
-                    <h1>{name}</h1>
+                    <h1 className="font-semibold text-lg">{name}</h1>
                     <h1>{type}</h1>
                 </div>
-                <h1>{price}</h1>
+                <h1>฿{price}</h1>
             </div>
         </Link>
     );

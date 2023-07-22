@@ -59,13 +59,16 @@ export default function HomePage() {
             <div className="w-[20%] flex flex-col gap-5 ">
                 <div className="flex gap-3 p-3">
                     <input
-                        className="h-8 w-[80%]"
+                        className="h-8 w-[80%] border border-black p-2 rounded-md"
                         type="text"
                         placeholder="search..."
                         value={searchInput}
                         onChange={handleChangeSearchInput}
+                        id="search"
                     />
-                    <SearchIcon />
+                    <label htmlFor="search" role="button">
+                        <SearchIcon />
+                    </label>
                 </div>
                 {title.map((el, i) => (
                     <SideBarButton

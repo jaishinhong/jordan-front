@@ -28,7 +28,7 @@ export default function CartPage() {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
-            if (!cart) {
+            if (cart.length <= 0) {
                 return toast.error("you don't have any item in your cart yet");
             }
             await addOrder();
@@ -39,29 +39,36 @@ export default function CartPage() {
             toast.success("fail to confrim order");
         }
     };
+
     return (
         <div className="flex justify-center h-[calc(100vh-168px)] mt-[100px] gap-8">
             <div className=" min-w-[600px]">
                 <h1 className="font-semibold text-xl mb-5">Cart</h1>
                 <div className="flex flex-col gap-3">
-                    {cart.map((el) => (
-                        <CartItem
-                            key={el.id}
-                            src={el.Product.image}
-                            name={el.Product.name}
-                            price={el.Product.price}
-                            amount={el.amount}
-                            category={el.Product.categoryId}
-                            size={el.size}
-                            onDelete={() => deleteCart(el.id)}
-                            increaseQuantity={() => increaseQuantity(el.id)}
-                            decreaseQuantity={() => {
-                                if (el.amount > 1) {
-                                    decreaseQuantity(el.id);
-                                }
-                            }}
-                        />
-                    ))}
+                    {cart.length > 0 ? (
+                        cart.map((el) => (
+                            <CartItem
+                                key={el.id}
+                                src={el.Product.image}
+                                name={el.Product.name}
+                                price={el.Product.price}
+                                amount={el.amount}
+                                category={el.Product.categoryId}
+                                size={el.size}
+                                onDelete={() => deleteCart(el.id)}
+                                increaseQuantity={() => increaseQuantity(el.id)}
+                                decreaseQuantity={() => {
+                                    if (el.amount > 1) {
+                                        decreaseQuantity(el.id);
+                                    }
+                                }}
+                            />
+                        ))
+                    ) : (
+                        <h1 className="text-center font-semibold text-xl mt-20">
+                            No items in your cart yet!
+                        </h1>
+                    )}
                 </div>
             </div>
             <div className="min-w-[337px]">
