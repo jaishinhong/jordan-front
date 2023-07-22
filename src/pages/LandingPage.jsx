@@ -3,6 +3,7 @@ import Button from "../features/landing/component/Button";
 import Card from "../features/landing/component/Card";
 import { useProduct } from "../features/product/hook/useProduct";
 import { Link } from "react-router-dom";
+import Carousel from "../features/landing/component/Carousel";
 
 export default function LandingPage() {
     const { products, getAllProduct } = useProduct();
@@ -27,18 +28,7 @@ export default function LandingPage() {
                 <Link to="/home">
                     <Button title="Shop All" />
                 </Link>
-                <h1 className="text-xl font-semibold">Popular</h1>
-                <div className="flex justify-between">
-                    {products.slice(0, 3).map((el) => (
-                        <Link to={`/product/${el.id}`} key={el.id}>
-                            <Card
-                                name={el.name}
-                                price={el.price}
-                                image={el.image}
-                            />
-                        </Link>
-                    ))}
-                </div>
+                <Carousel products={products} />
                 <div className="flex p-5 gap-5">
                     <div className="relative">
                         <Link to="/home" state={{ type: "Men" }}>

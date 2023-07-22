@@ -72,3 +72,45 @@ export function SearchIcon(props) {
         </svg>
     );
 }
+
+export function LeftIcon(props) {
+    return (
+        <svg
+            viewBox="-0.5 0 25 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <g
+                stroke="#000"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            >
+                <path d="M12 22.42c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10z" />
+                <path d="M13.41 16.42l-3.06-2.87a1.537 1.537 0 010-2.26l3.06-2.87" />
+            </g>
+        </svg>
+    );
+}
+
+export function RightIcon(props) {
+    return (
+        <svg
+            viewBox="-0.5 0 25 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <g
+                stroke="#000"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            >
+                <path d="M12 22.42c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10z" />
+                <path d="M10.56 8.42l3.06 2.87a1.52 1.52 0 010 2.26l-3.06 2.87" />
+            </g>
+        </svg>
+    );
+}
