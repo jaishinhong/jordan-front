@@ -8,6 +8,7 @@ import { LeftIcon, RightIcon } from "../../../icons";
 export default function ({ products }) {
     const [items, setItems] = useState([]);
     const [carousel, setCarousel] = useState([0, 3]);
+    const [hover, setHover] = useState("");
 
     const handleClick = (name) => {
         if (name == "right") {
@@ -30,11 +31,27 @@ export default function ({ products }) {
             <div className="flex justify-between mb-5">
                 <h1 className="text-xl font-semibold ">Popular</h1>
                 <div className="flex gap-5 font-semibold text-xl">
-                    <button onClick={() => handleClick("left")}>
-                        <LeftIcon height="3rem" width="3rem" />
+                    <button
+                        onClick={() => handleClick("left")}
+                        onMouseEnter={() => setHover("left")}
+                        onMouseLeave={() => setHover("")}
+                    >
+                        <LeftIcon
+                            height="2.5rem"
+                            width="2.5rem"
+                            fill={hover == "left" ? "#f0eded" : "none"}
+                        />
                     </button>
-                    <button onClick={() => handleClick("right")}>
-                        <RightIcon height="3rem" width="3rem" />
+                    <button
+                        onClick={() => handleClick("right")}
+                        onMouseEnter={() => setHover("right")}
+                        onMouseLeave={() => setHover("")}
+                    >
+                        <RightIcon
+                            height="2.5rem"
+                            width="2.5rem"
+                            fill={hover == "right" ? "#f0eded" : "none"}
+                        />
                     </button>
                 </div>
             </div>

@@ -16,7 +16,7 @@ export default function LandingPage() {
             <div className="w-4/5 m-auto flex flex-col gap-5 mt-5">
                 <Link to="/home">
                     <img
-                        src="https://static.nike.com/a/images/f_auto/dpr_1.3,cs_srgb/w_1423,c_limit/9f8454ce-061f-4220-b878-d3bbf19709e7/%E0%B9%81%E0%B8%9A%E0%B8%A3%E0%B8%99%E0%B8%94%E0%B9%8C-jordan.jpg"
+                        src="https://r4.wallpaperflare.com/wallpaper/829/552/852/4k-basketball-player-chicago-bulls-michael-jordan-wallpaper-a39e88d06efcd8dea33188e276d0bc71.jpg"
                         alt="banner"
                         className="w-full h-[550px] "
                     />
