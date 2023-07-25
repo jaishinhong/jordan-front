@@ -4,6 +4,7 @@ import SideBarButton from "../features/product/components/SideBarButton";
 import { useProduct } from "../features/product/hook/useProduct";
 import { SearchIcon } from "../icons";
 import { useLocation } from "react-router-dom";
+import PartialLoading from "../component/PartialLoading";
 const title = ["All", "Men", "Women", "Kids"];
 
 export default function HomePage() {
@@ -16,7 +17,8 @@ export default function HomePage() {
         getAllProduct,
         products,
         getProductByCategoryId,
-        getSearchedProducts
+        getSearchedProducts,
+        loading
     } = useProduct();
 
     const [searchInput, setSearchInput] = useState("");
@@ -79,18 +81,22 @@ export default function HomePage() {
                     />
                 ))}
             </div>
-            <div className="grid grid-cols-3 w-full gap-5 px-10 overflow-y-scroll">
-                {products.map((el) => (
-                    <ProductCard
-                        key={el.id}
-                        name={el.name}
-                        price={el.price}
-                        src={el.image}
-                        category={el.categoryId}
-                        id={el.id}
-                    />
-                ))}
-            </div>
+            {loading ? (
+                <PartialLoading />
+            ) : (
+                <div className="grid grid-cols-3 w-full gap-5 px-10 overflow-y-scroll">
+                    {products.map((el) => (
+                        <ProductCard
+                            key={el.id}
+                            name={el.name}
+                            price={el.price}
+                            src={el.image}
+                            category={el.categoryId}
+                            id={el.id}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
